@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sangam Luitel | AI Agent Automation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/devicon@2.14.0/devicon.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.aiagent.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="logo" onclick="location.href='index.html'">
+      <img src="/images/perfectlogoo.png" alt="Logo" />
+    </div>
+    <div class="hamburger-menu">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+      <path fill="#231F20" d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"/>
+      <path fill="#231F20" d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"/>
+      <path fill="#231F20" d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"/>
+      </svg>
+    </div>
+    <ul class="desktop-menu">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li class="aiagent-nav">
+        <a href="aiagent.html"class="active">AI Agent</a>
+      </li>
+      <!-- Graphics nav with glowing arrow -->
+      <li class="graphics-nav">
+        <a href="graphics.html">Graphics</a>
+        <div class="graphics-arrow">
+          <svg class="arrow-up-glow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="Sangam_Luitel.pdf" download class="resume-btn">Resume</a></li>       
+    </ul>
+
+    <div class="small-screen-nav">
+      <div class="cross">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M512.481 421.906 850.682 84.621c25.023-24.964 65.545-24.917 90.51.105s24.917 65.545-.105 90.51L603.03 512.377 940.94 850c25.003 24.984 25.017 65.507.033 90.51s-65.507 25.017-90.51.033L512.397 602.764 174.215 940.03c-25.023 24.964-65.545 24.917-90.51-.105s-24.917-65.545.105-90.51l338.038-337.122L84.14 174.872c-25.003-24.984-25.017-65.507-.033-90.51s65.507-25.017 90.51-.033L512.48 421.906z"/></svg>
+      </div>
+      <ul class="small-menu">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li class="aiagent-nav">
+          <a href="aiagent.html">AI Agent</a>
+        </li>
+        <!-- Graphics nav with glowing arrow -->
+      <li class="graphics-nav">
+        <a href="graphics.html">Graphics</a>
+        <div class="graphics-arrow">
+          <svg class="arrow-up-glow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Sangam_Luitel.pdf" download class="resume-btn">Resume</a></li>       
+      </ul>
+    </div>
+
+    <button id="theme-toggle" aria-label="Toggle Theme">
+      <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+  </nav>
+
+  <section class="hero">
+    <h1>Build Your <span>AI Automation Agents</span></h1>
+    <p>Smart agents that plan, think, automate tasks, take actions, and scale your business.</p>
+    <div class="workflow-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+  <div style="text-align:center; padding-bottom:4rem;">
+    <a href="graphics.html#contact" class="ai-agent-btn btn">Build My AI Agent</a>
+  </div>
+
+  </section>
+
+  <section class="agent-grid">
+    <div class="agent-card"><i class="fas fa-brain"></i>
+      <h3>Workflow Agents</h3>
+      <p>Smart automation for business tasks & execution.</p>
+    </div>
+    <div class="agent-card"><i class="fas fa-robot"></i>
+      <h3>Chatbots & Assistants</h3>
+      <p>Conversational agents with tools & memory.</p>
+    </div>
+    <div class="agent-card"><i class="fas fa-chart-line"></i>
+      <h3>Insight Agents</h3>
+      <p>Real-time data monitoring & decision making.</p>
+    </div>
+    <div class="agent-card"><i class="fas fa-paint-brush"></i>
+      <h3>Creative Agents</h3>
+      <p>Design, content & media generation automation.</p>
+    </div>
+    <div class="agent-card"><i class="fas fa-bolt"></i>
+      <h3>Automation Bots</h3>
+      <p>Process execution & operational agents for workflow.</p>
+    </div>
+    <div class="agent-card"><i class="fas fa-shield-alt"></i>
+      <h3>Security AI</h3>
+      <p>Threat detection & smart monitoring systems.</p>
+    </div>
+  </section>
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Let's build something amazing together. Reach out via any platform below:</p>
+    <div class="social-icons">
+      <a href="mailto:luitelsangam9@gmail.com" aria-label="Email Sangam"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/sangam-luitel-6415aa328" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/kaji-sangamluitel" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sangam Luitel. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="/script.aiagent.js"></script>
+ 
+</body>
+
+</html>

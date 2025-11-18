@@ -1,0 +1,10 @@
+{
+    "liveServer.settings.port": 5501,
+    "html.format.enable": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ecmel.vscode-html-css",
+    "[html]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    }
+}
