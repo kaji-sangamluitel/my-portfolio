@@ -561,25 +561,26 @@ body.light-mode .circle-glow {
 @media (max-width: 768px) {
   .circle-gallery {
     width: 100%;
-    height: 420px;
-    margin: 80px auto;
+    height: 360px;
+    margin: 60px auto;
+    overflow: hidden; /* Ensure no scrollbar if it slightly protrudes */
   }
 
   .circle img {
-    width: 120px;
-    height: 120px;
-    transform-origin: center center -240px;
+    width: 70px;
+    height: 70px;
+    transform-origin: center center;
   }
 
   .center-display {
-    width: 280px;
-    height: 280px;
+    width: 150px;
+    height: 150px;
   }
 
   .circle-glow {
-    width: 340px;
-    height: 340px;
-    filter: blur(50px);
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
   }
 }
 
