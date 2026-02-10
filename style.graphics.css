@@ -561,14 +561,14 @@ body.light-mode .circle-glow {
 @media (max-width: 768px) {
   .circle-gallery {
     width: 100%;
-    height: 360px;
+    height: 600px; /* Increased to 600px for 340px radius */
     margin: 60px auto;
-    overflow: hidden; /* Ensure no scrollbar if it slightly protrudes */
+    overflow: hidden; 
   }
 
   .circle img {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     transform-origin: center center;
   }
 
@@ -1095,6 +1095,16 @@ body.light-mode .contact-form textarea {
     }
     
     /* Responsive */
+    /* Responsive */
+    @media (max-width: 992px) {
+      nav ul {
+        display: none;
+      }
+      .small-screen-nav {
+         width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;

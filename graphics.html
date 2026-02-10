@@ -462,7 +462,7 @@ document.addEventListener('click', (e) => {
     function positionCircle() {
       const total = imgs.length;
       const isMobile = window.innerWidth <= 768;
-      const radiusZ = isMobile ? 140 : 260; // Responsive radius
+      const radiusZ = isMobile ? 340 : 260; // Increased to 340 for very loose packing on mobile
 
       imgs.forEach((img,i)=>{
         const angle = (i/total)*360;

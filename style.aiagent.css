@@ -247,6 +247,7 @@ nav ul li a.active {
 
 .hero h1 span {
   background:#00c896;
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   font-size: 2.5rem;
@@ -293,6 +294,7 @@ animation-delay: 0.3s, 1.5s;
 
 .hero h1 span {
 background: #00c896;
+background-clip: text;
 -webkit-background-clip: text;
 color: transparent;
 display: inline-block;
@@ -440,5 +442,47 @@ footer {
     padding: 1rem;
     background-color: var(--nav-bg);
     font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 992px) {
+    nav ul {
+      display: none;
+    }
+    
+    .small-screen-nav {
+      width: 100%;
+    }
+    
+    .agent-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      padding: 4rem 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero h1 span {
+      font-size: 1.8rem;
+    }
+    
+    .hero p {
+      font-size: 0.95rem;
+      padding: 0 1rem;
+    }
+
+    .btn {
+       padding: 12px 24px;
+       font-size: 0.95rem;
+    }
+    
+    .agent-grid {
+      grid-template-columns: 1fr;
+      padding: 3rem 1.5rem;
+      gap: 1.5rem;
+    }
   }
   

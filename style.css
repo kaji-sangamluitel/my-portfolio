@@ -433,13 +433,22 @@
   }
   
   /* Responsive */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     .about-container {
       flex-direction: column;
+      text-align: center;
     }
   
     .about-img {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .about-content {
+      padding: 0 1rem;
+    }
+
+    .skills-list {
+      justify-content: center;
     }
   
     .projects-cards,
@@ -448,8 +457,43 @@
     }
   
     nav ul {
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      display: none; /* Hide desktop menu */
+    }
+
+    .small-screen-nav {
+      width: 100%; /* Full width on smaller screens */
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    header {
+        padding: 6rem 1rem 3rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-container {
+        padding: 1rem;
+    }
+
+    .project-card {
+        max-width: 100%; 
+        width: 100%;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Center the graphics arrow on mobile if needed */
+    .graphics-arrow {
+       left: 50%;
     }
   }
   
