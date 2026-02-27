@@ -1,0 +1,15 @@
+# Use Nginx Alpine (the smallest, fastest version of Nginx)
+FROM nginx:alpine
+
+# Remove the default Nginx welcome page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy your portfolio files into the Nginx container
+# If your files are in a folder called 'dist', change "." to "dist"
+COPY . /usr/share/nginx/html
+
+# Tell Docker we are using Port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
