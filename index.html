@@ -1,20 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sangam Luitel - Python Django Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Featured Stories</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="https://cdn.jsdelivr.net/npm/devicon@2.14.0/devicon.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="images/perfectlogoo.png" type="image/png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Your existing theme file (provides :root variables, body, light-mode, etc.) -->
+
+  <style>
+    /* ===== Alternating rows section (uses your theme variables) ===== */
+    #stories {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    #stories > h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 3rem;
+    }
+
+    .story-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Text and image swap sides on every even row */
+    .story-row:nth-child(even) .story-text  { order: 2; }
+    .story-row:nth-child(even) .story-image { order: 1; }
+
+    .story-text h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .story-text p {
+      line-height: 1.7;
+      margin: 0 0 1.5rem;
+      max-width: 60ch;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      background-color: var(--card-bg);
+    }
+
+    /* See more button (matches your .resume-btn look) */
+    .see-more-btn {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1.4rem;
+      font: 600 1rem 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .see-more-btn:hover,
+    .see-more-btn:focus-visible {
+      background-color: var(--button-hover);
+    }
+
+    .see-more-btn:focus-visible,
+    .modal-close:focus-visible {
+      outline: 3px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+
+    /* Hidden full blog text (copied into the modal on click) */
+    .full-content { display: none; }
+
+    /* ===== Modal ===== */
+    dialog.story-modal {
+      width: min(720px, 92vw);
+      max-height: 90vh;
+      padding: 0;
+      border: none;
+      border-radius: 14px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    dialog.story-modal[open] {
+      display: flex;
+      flex-direction: column;
+      animation: modalIn 0.3s ease;
+    }
+
+    dialog.story-modal::backdrop {
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .modal-close:hover { background-color: var(--primary-color); }
+
+    .modal-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .modal-body {
+      padding: 1.75rem 2rem 2.25rem;
+      overflow-y: auto;
+    }
+
+    .modal-body h3 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin: 0 0 1rem;
+    }
+
+    .modal-body p {
+      line-height: 1.8;
+      margin: 0 0 1.1rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      #stories { padding: 3rem 1rem; }
+
+      .story-row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+      }
+
+      /* On mobile: image always first, text below */
+      .story-row .story-image,
+      .story-row:nth-child(even) .story-image { order: 1; }
+      .story-row .story-text,
+      .story-row:nth-child(even) .story-text  { order: 2; }
+
+      .story-image img { height: 240px; }
+      .modal-image { height: 200px; }
+      .modal-body { padding: 1.25rem 1.25rem 1.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      dialog.story-modal[open] { animation: none; }
+    }
+  </style>
 </head>
 
 <body>
-  <nav>
+ <nav>
     <div class="logo" onclick="location.href='index.html'">
       <img src="https://kaji-sangamluitel.github.io/my-portfolio/images/perfectlogoo.png" alt="Logo" />
     </div>
@@ -27,7 +199,7 @@
     </div>
     <ul class="desktop-menu">
       <li><a href="index.html#home">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li class="aiagent-nav">
         <a href="aiagent.html">AI Agent</a>
@@ -41,7 +213,7 @@
           </svg>
         </div>
       </li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="contact.html">Contact</a></li>
       <li><a href="Sangam_Luitel_Re.pdf" download class="resume-btn">Resume</a></li>       
     </ul>
 
@@ -74,130 +246,154 @@
       <i id="theme-icon" class="fas fa-moon"></i>
     </button>
   </nav>
-  
-  <header id="header" data-aos="fade-up">
-    <p>Hello, I'm</p>
-    <h1><span>Sangam Luitel</span> - Python Django Developer</h1>
-  </header>
 
-  <section id="about" data-aos="fade-up">
-    <div class="about-container">
-      <div class="about-img">
-        <img src="https://kaji-sangamluitel.github.io/my-portfolio/images/portphoto.png" alt="Profile image" />
-      </div>
-      <div class="about-content">
-        <h2>About Me</h2>
-        <p class="about-me-text">
-          I’m a passionate Django developer focused on building robust, scalable web applications with clean,
-          maintainable code. I enjoy working with REST APIs, relational databases, and delivering products that solve
-          real-world problems.
-        </p>
-        <h3>Skills:</h3>
-        <ul class="skills-list">
-          <li>Python</li>
-          <li>Django</li>
-          <li>REST APIs</li>
-          <li>Docker</li>
-          <li>Ai Agent</li>
-          <li>n8n</li>
-          <li>Comfyui</li>
-          <li>HTML/CSS</li>
-          <li>PostgreSQL</li>
-          <li>Figma</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section id="techstack" data-aos="fade-up">
-    <h2>Tech Stack</h2>
-    <div class="tech-stack-container">
-      <div class="tech-box"><i class="devicon-python-plain"></i><p>Python</p></div>
-      <div class="tech-box"><i class="devicon-django-plain "></i><p>Django</p></div>
-      <div class="tech-box"><i class="devicon-postgresql-plain "></i><p>PostgreSQL</p></div>
-      <div class="tech-box"><i class="devicon-javascript-plain "></i><p>JavaScript</p></div>
-      <div class="tech-box"><i class="devicon-html5-plain "></i><p>HTML5</p></div>
-      <div class="tech-box"><i class="devicon-css3-plain "></i><p>CSS3</p></div>
-      <div class="tech-box"><i class="devicon-git-plain "></i><p>Git</p></div>
-      <div class="tech-box"><i class="devicon-github-original "></i><p>GitHub</p></div>
-      <div class="tech-box"><i class="devicon-linux-plain "></i><p>Linux</p></div>
-      <div class="tech-box"><i class="devicon-docker-plain "></i><p>Docker</p></div>
-      <div class="tech-box"><i class="devicon-figma-plain "></i><p>Figma</p></div>
-    </div>
-  </section>
+    <!-- Fullscreen banner -->
 
-  <section id="projects" data-aos="fade-up">
-    <h2>Projects</h2>
-    <div class="projects-cards">
-      <div class="project-card">
-        <a href ="projects.html" target="_blank" rel="noopener">
-        <h3>Django E-commerce</h3>
-        <p>Full-featured e-commerce platform using Django, Stripe, and PostgreSQL with cart, checkout, and admin panel.</p>
-        <a href="projects.html" target="_blank" rel="noopener">Project 1</a>      
-      </div>
-      <div class="project-card">
-        <a href ="projects.html" target="_blank" rel="noopener">
-        <h3>Admin Analytics</h3>
-        <p>Custom admin dashboard with Django, DRF, and Chart.js for monitoring user activity and system metrics.</p>
-        <a href="projects.html" target="_blank" rel="noopener">Project 2</a> 
-      </div>
-      <div class="project-card">
-        <a href ="projects.html" target="_blank" rel="noopener">
-        <h3>Roti Shop and Dhindo Restro </h3>
-        <p>Designed and developed a responsive, user-friendly website for Roti Shop & Dhindo Restro, featuring online ordering, menu display, location details, and contact functionality. </p>
-        <a href="projects.html"target="_blank" rel="noopener">Project 3</a>
-      </div>
-      <div class="project-card">
-        <a href ="graphics.html" target="_blank" rel="noopener">
-        <section id="graphicsprojects" >
-        <h3>Graphics Projects</h3>
-        <p>A collection of clean, impactful visuals crafted with creativity and precision. </p>
-        <a href="graphics.html" target="_blank" rel="noopener">Graphics Collection</a>
-      </section>
-      </div>
+  <section class="banner">
+     <div class="banner-content">
+      <h1>Stories on design, code and building things</h1>
+      <p>Notes from real projects: what worked, what didn't, and what I'd do differently next time.</p>
+      <a class="banner-btn" href="#stories">Read the stories</a>
     </div>
   </section>
-  <section id="testimonials" class="section"data-aos="fade-up" data-aos-delay="100"> 
-    <h2 class="section-title" data-aos="fade-up">Testimonials</h2>
-  
-    <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100"> 
-      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-        <p class="testimonial-text">
-          “Sangam's portfolio clearly showcases his expertise also in Web development. The layout is clean, fast, and responsive — a reflection of how well he builds real-world projects.”
-        </p>
-        <p class="testimonial-author">— Roshan Neupane<br><span>Frontend Developer</span></p>
+  <section id="stories">
+    <h2>Featured Stories</h2>
+
+    <!-- ROW 1: text left, image right -->
+    <article class="story-row">
+      <div class="story-text">
+        <h3>Building a Design System From Scratch</h3>
+        <p>A short summary goes here. Two or three lines that tell the reader what this story is about and why it matters to them.</p>
+        <button class="see-more-btn" type="button">See more</button>
+        <div class="full-content">
+          <p>Replace this with your full blog text for story one. Add as many paragraphs as you need; the modal scrolls when the content is long.</p>
+          <p>Second paragraph of the blog. You can include links, bold text, or lists here just like any normal HTML.</p>
+          <p>Third paragraph to wrap up the story.</p>
+        </div>
       </div>
-  
-      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-        <p class="testimonial-text">
-          “Highly professional and responsive. Working with Sangam made our backend much more efficient.”
-        </p>
-        <p class="testimonial-author">— Anisha Shakya<br><span>Project Manager</span></p>
+      <div class="story-image">
+        <img src="https://picsum.photos/seed/story1/800/600" alt="Design system components laid out on a screen" />
       </div>
-  
-      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-        <p class="testimonial-text">
-          “Quick to understand requirements and deliver high-quality Django code. Highly recommended!”
-        </p>
-        <p class="testimonial-author">— Sanish Thapa<br><span>Freelance Client</span></p>
+    </article>
+
+    <!-- ROW 2: image left, text right -->
+    <article class="story-row">
+      <div class="story-text">
+        <h3>Lessons From My First Open Source Project</h3>
+        <p>A short summary goes here. Two or three lines that tell the reader what this story is about and why it matters to them.</p>
+        <button class="see-more-btn" type="button">See more</button>
+        <div class="full-content">
+          <p>Replace this with your full blog text for story two.</p>
+          <p>Second paragraph of the blog.</p>
+          <p>Third paragraph to wrap up the story.</p>
+        </div>
       </div>
-    </div>
-  </section>
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact</h2>
-    <p>Let's build something amazing together. Reach out via any platform below:</p>
-    <div class="social-icons">
-      <a href="mailto:luitelsangam9@gmail.com" aria-label="Email Sangam"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/sangam-luitel-6415aa328" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/kaji-sangamluitel" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    </div>
+      <div class="story-image">
+        <img src="https://picsum.photos/seed/story2/800/600" alt="Laptop with code on screen" />
+      </div>
+    </article>
+
+    <!-- ROW 3: text left, image right -->
+    <article class="story-row">
+      <div class="story-text">
+        <h3>How I Plan and Ship Side Projects</h3>
+        <p>A short summary goes here. Two or three lines that tell the reader what this story is about and why it matters to them.</p>
+        <button class="see-more-btn" type="button">See more</button>
+        <div class="full-content">
+          <p>Replace this with your full blog text for story three.</p>
+          <p>Second paragraph of the blog.</p>
+          <p>Third paragraph to wrap up the story.</p>
+        </div>
+      </div>
+      <div class="story-image">
+        <img src="https://picsum.photos/seed/story3/800/600" alt="Notebook with a project plan" />
+      </div>
+    </article>
+
+    <!-- ROW 4: image left, text right -->
+    <article class="story-row">
+      <div class="story-text">
+        <h3>Making Websites Faster on Slow Networks</h3>
+        <p>A short summary goes here. Two or three lines that tell the reader what this story is about and why it matters to them.</p>
+        <button class="see-more-btn" type="button">See more</button>
+        <div class="full-content">
+          <p>Replace this with your full blog text for story four.</p>
+          <p>Second paragraph of the blog.</p>
+          <p>Third paragraph to wrap up the story.</p>
+        </div>
+      </div>
+      <div class="story-image">
+        <img src="https://picsum.photos/seed/story4/800/600" alt="Performance graph on a monitor" />
+      </div>
+    </article>
+
+    <!-- ROW 5: text left, image right -->
+    <article class="story-row">
+      <div class="story-text">
+        <h3>What I Learned From Freelancing</h3>
+        <p>A short summary goes here. Two or three lines that tell the reader what this story is about and why it matters to them.</p>
+        <button class="see-more-btn" type="button">See more</button>
+        <div class="full-content">
+          <p>Replace this with your full blog text for story five.</p>
+          <p>Second paragraph of the blog.</p>
+          <p>Third paragraph to wrap up the story.</p>
+        </div>
+      </div>
+      <div class="story-image">
+        <img src="https://picsum.photos/seed/story5/800/600" alt="Desk setup for remote work" />
+      </div>
+    </article>
   </section>
 
-  <footer>
+    <footer>
     <p>&copy; 2025 Sangam Luitel. All rights reserved.</p>  
   </footer>  
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="./script.js"></script>  
-</body>
+  <!-- Modal: image on top, blog content below -->
+  <dialog class="story-modal" id="storyModal" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" aria-label="Close">&times;</button>
+    <img class="modal-image" id="modalImage" src="" alt="" />
+    <div class="modal-body">
+      <h3 id="modalTitle"></h3>
+      <div id="modalContent"></div>
+    </div>
+  </dialog>
 
+  <script>
+    (function () {
+      var modal = document.getElementById('storyModal');
+      var modalImage = document.getElementById('modalImage');
+      var modalTitle = document.getElementById('modalTitle');
+      var modalContent = document.getElementById('modalContent');
+
+      document.querySelectorAll('.see-more-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var row = btn.closest('.story-row');
+          var img = row.querySelector('.story-image img');
+
+          modalImage.src = img.src;
+          modalImage.alt = img.alt;
+          modalTitle.textContent = row.querySelector('h3').textContent;
+          modalContent.innerHTML = row.querySelector('.full-content').innerHTML;
+
+          modal.showModal();
+          modal.querySelector('.modal-body').scrollTop = 0;
+        });
+      });
+
+      // Close button
+      modal.querySelector('.modal-close').addEventListener('click', function () {
+        modal.close();
+      });
+
+      // Click on the backdrop closes the modal (Esc works by default)
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) modal.close();
+      });
+    })();
+  </script>
+   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./script.js"></script>  
+
+</body>
 </html>

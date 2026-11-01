@@ -71,6 +71,30 @@
   }
   }
 
+  .banner{
+      /* nav height = 2 x 1rem padding + 40px logo = 72px */
+      min-height: calc(100vh - 72px);
+      min-height: calc(100svh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      color: #fff;
+      /* 1) Change this line to your own banner image */
+      --banner-image: url("images/banner.jpg");
+ 
+      /* Layers, top to bottom: dark overlay, your image, online placeholder, solid fallback colour */
+      background-color: #0f2f2a;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
+        var(--banner-image),
+        url("https://picsum.photos/seed/banner/1920/1080");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+  
   .small-screen-nav {
   position: fixed;
   top: 0;
